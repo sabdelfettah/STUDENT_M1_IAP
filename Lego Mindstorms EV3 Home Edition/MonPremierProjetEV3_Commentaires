@@ -1,0 +1,40 @@
+﻿Réalisé par :
+
+- ABDELFETTAH Salim
+- GACI Hassane
+- HALIT Mounir
+
+### Programmes ###
+
+Programme 1:
+Emission d'un son ("Good job").
+
+Programme 2 (moteur):
+1) Rotation (1 tour) à une vitesse de 30 (vitesse allant de -100 à 100 ; 1 à 100 - dans le sens des aiguilles d'une montre et de -1 à -100 dans le sens contraire).
+2) Attente (d'une durée de 2 secondes).
+3) Rotation (1 tour) à une vitesse de -50 (sens contraire des aiguilles d'une montre).
+4) Attente (d'une durée d'une seconde).
+5) Rotation (pendant 2 secondes) à vitesse maximale dans le sens des aiguilles d'une montre.
+
+Programme 3 (détecteur):
+1) Emission d'un son ("Go").
+2) Attente (d'une durée d'une seconde).
+3) Emission d'un son ("Good Job").
+4) Attente (appuye sur le bouton poussoire).
+5) Emission d'un son ("Good Bye").
+
+Programme 4:
+1) Emission d'un son ("Go").
+2) Attente (appuye sur le bouton poussoire).
+3) Rotation (1 tour) à une vitesse de 75 dans le sens des aiguilles d'une montre.
+4) Attente (relachement du bouton poussoire).
+5) Emission d'un son ("Hello").
+6) Affichage d'un texte ("Hello ...").
+7) Attente (appuye puis relachement du bouton poussoire).
+8) Rotation (2 secondes) à une vitesse de 50 dans le sens contraire des aiguilles d'une montre.
+9) Emission d'un son ("Good Bye").
+
+Programme 5:
+Exécution en boucle (de 0 à 4) ; 
+Calcul du modulo de la division de la valeur courante du compteur (de la boucle) sur 2 ;
+Selon la valeur obtenue, rotation du moteur dans un sens ou un autre.
