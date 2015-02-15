@@ -1,9 +1,15 @@
 [Abdelfettah, Gaci, Halit Jeu 29 jan 2015 20:00:08 CET]
 - Prise en main de l'IDE "Lego Mindstorms EV3 Home Edition"
-- Création de 5 petits programmes avec l'IDE (fichier : "Lego Mindstorms EV3 Home Edition/MonPremierProjetEV3.ev3") en vue d'effectuer des tests
+- Création de 5 petits programmes avec l'IDE (fichier : "Lego Mindstorms EV3 Home Edition/MonPremierProjetEV3.ev3") en vue d'effectuer des tests.
 
 [Abdelfettah, Gaci, Halit Dim 1 fev 2015 19:53:23 CET]
-- Création de 3 petits programmes (fichiers dans le dossier : "LeJOS/monPremierPackage") avec Eclipse et le Framework LeJOS (v0.9.0 beta) en vue d'effectuer des tests
+- Création de 3 petits programmes (fichiers dans le dossier : "LeJOS/monPremierPackage") avec Eclipse et le Framework LeJOS (v0.9.0 beta) en vue d'effectuer des tests.
 
 [Abdelfettah, Gaci, Halit Jeu 5 fev 2015 18:19:23 CET]
-- Création d'un programme de détéction de couleur ; Détéction (puis affichage du résultat) des couleurs principales 
+- Création d'un programme de détéction de couleur ; Détéction (puis affichage du résultat) des couleurs principales.
+
+[Abdelfettah, Gaci, Halit Jeu 12 fev 2015 15:14:14 CET]
+- Création d'un autre programme de détéction de couleur en utilisant le mode RGB pour calibrer ; Détection et affichage du résultat. 
+
+[Abdelfettah, Gaci, Halit Jeu dimanche 15 fev 2015 16:07:12 CET]
+- Création d'un petit programme  pour tester les moteurs en synchronisant les Deux.  
