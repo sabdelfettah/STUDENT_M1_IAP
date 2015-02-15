@@ -1,5 +1,3 @@
-
-
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
@@ -9,9 +7,10 @@ import lejos.hardware.motor.BaseRegulatedMotor;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.Motor;
 import lejos.robotics.RegulatedMotor;
+import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
 
-public class Motors {
+public class TestMotor {
 	private static BaseRegulatedMotor leftMotor;
 	private static BaseRegulatedMotor rightMotor;
 	private final static int speedMotor = 900;
@@ -22,9 +21,9 @@ public class Motors {
 			/*
 			-affiche sur l'ecran " Bonjour"	
 			-avance en effectuant  6 tours   	
-			-toure vers la gauche 
+			-toure vers la droite 
 			-avance en effectuant  6 tours   
-			-tourne versla droite
+			-tourne vers la gauche
 			-avance en effectuant  6 tours   
 			-attend 2 seconde
 			-recule  en effectuant  6 tours  
@@ -40,40 +39,40 @@ public class Motors {
 		rightMotor.setSpeed(speedMotor); 
 		leftMotor.setAcceleration(accelerationMotor);
 		rightMotor.setAcceleration(accelerationMotor);
+		rightMotor.synchronizeWith(new RegulatedMotor[] {leftMotor} ); 	
 		LCD.drawString("Bonjour", 3, 3);	
-
-		leftMotor.startSynchronization();
+		rightMotor.startSynchronization();
 			leftMotor.rotate(2160,true);
 			rightMotor.rotate(2160,true);
 		rightMotor.endSynchronization();
 			leftMotor.waitComplete();
 			rightMotor.waitComplete();
-		leftMotor.startSynchronization();
-			leftMotor.rotate(720,true);
-			rightMotor.rotate(-720,true);
+		rightMotor.startSynchronization();
+			leftMotor.rotate(360,true);
+			rightMotor.rotate(0,true);
 		rightMotor.endSynchronization();
 			leftMotor.waitComplete();
 			rightMotor.waitComplete();
-		leftMotor.startSynchronization();
+		rightMotor.startSynchronization();
 			leftMotor.rotate(2160,true);
 			rightMotor.rotate(2160,true);
 		rightMotor.endSynchronization();
 			leftMotor.waitComplete();
 			rightMotor.waitComplete();
-		leftMotor.startSynchronization();
-			leftMotor.rotate(-720,true);
-			rightMotor.rotate(720,true);
+		rightMotor.startSynchronization();
+			leftMotor.rotate(0,true);
+			rightMotor.rotate(360,true);
 		rightMotor.endSynchronization();
 			leftMotor.waitComplete();
 			rightMotor.waitComplete();	
-		leftMotor.startSynchronization();
+		rightMotor.startSynchronization();
 			leftMotor.rotate(2160,true);
 			rightMotor.rotate(2160,true);
 		rightMotor.endSynchronization();
 			leftMotor.waitComplete();
 			rightMotor.waitComplete();	
 		try { Thread.sleep(1000); } catch (Exception e) {} 
-		leftMotor.startSynchronization();
+		rightMotor.startSynchronization();
 			leftMotor.rotate(-2160,true);
 			rightMotor.rotate(-2160,true);
 		rightMotor.endSynchronization();
@@ -86,3 +85,5 @@ public class Motors {
 		}
 
 }
+
+
