@@ -27,7 +27,7 @@ public class ColorSensor3 {
 			int B = coul.getBlue() ;
 			int V = coul.getGreen() ; 
 			
-			if (( R >= 66 && R <= 107 ) && ( V >= 30 && V <= 82 )  && ( B >= 2 && B <= 38 ) ) {
+			if (( R >=  && R <= 107 ) && ( V >= 30 && V <= 82 )  && ( B >= 2 && B <= 38 ) ) {
 				LCD.clear();
 				LCD.drawString("Jaune ", 0, 0);
 				LCD.drawString("R = "+R, 2, 2);
