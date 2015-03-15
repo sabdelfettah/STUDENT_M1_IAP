@@ -19,7 +19,7 @@ public class HandMotor {
 
 
 	public static void catchObject () {
-		catchObject (1000);
+		catchObject (400);
 	}
 
 
@@ -28,16 +28,16 @@ public class HandMotor {
 		if (state == OPEN) {
 			hand.setSpeed(speed);
 			hand.forward();
-			Delay.msDelay(2000);
+			Delay.msDelay(1200);
 			hand.stop(true);
 			state = CLOSE;
-		}
+		} 
 		
 		
 	}
 
 	public static void releaseObject () {
-		releaseObject (1000);
+		releaseObject (400);
 	}
 
 
@@ -46,7 +46,7 @@ public class HandMotor {
 		if (state == CLOSE) {
 			hand.setSpeed(speed);
 			hand.backward();
-			Delay.msDelay(2000);
+			Delay.msDelay(1000);
 			hand.stop(true);	
 			state = OPEN;
 		}
