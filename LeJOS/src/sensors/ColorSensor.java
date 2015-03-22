@@ -132,11 +132,13 @@ public class ColorSensor {
 			Delay.msDelay(3000) ;
 			
 			for (int i=0; i<nbr_test; i++){
+				LCD.clear() ;
 				couleur = coloradap.getColor() ;
 				int R = couleur.getRed() ;
 				int V = couleur.getGreen() ;
 				int B = couleur.getBlue() ;
 				wr.write(R+" "+V+" "+B+"\n") ;
+				LCD.drawInt((i+1), 4, 4) ;
 				Delay.msDelay(500) ;
 			}
 			wr.write("}"+"\n") ;	
