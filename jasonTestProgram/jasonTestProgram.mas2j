@@ -1,0 +1,17 @@
+MAS jasonTestProgram {
+
+	infrastructure: Centralised
+
+	agents:
+		agent1 sample_agent;
+		agent2 ev3Agent;
+		
+	classpath:
+		"C:/Program Files/leJOS EV3/lib/pc/*.jar";
+		"C:/Program Files/leJOS EV3/lib/pc/3rdparty/*.jar";
+		"C:/Program Files/leJOS EV3/lib/ev3/*.jar";
+		"D:/Etudes/Jason-1.4.2/*.jar";
+		
+	aslSourcePath:
+		"src/asl";
+}

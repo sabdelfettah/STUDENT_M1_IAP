@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="con" path="org.lejos.ev3.ldt.LEJOS_EV3_LIBRARY_CONTAINER"/>
+	<classpathentry excluding="*.asl" kind="src" path="src/asl"/>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/lib/jason.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/ghost4j-0.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/jai_imageio_windows-i586.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/tess4j.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/win32-x86-64.jar"/>
+	<classpathentry kind="lib" path="D:/Etudes/Jason-1.4.2/pccomm.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>
