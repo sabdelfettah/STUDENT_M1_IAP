@@ -24,24 +24,32 @@ public class ColorSensor {
 	private static  BufferedWriter wr;
 	private static BufferedReader br;
 	private static Color couleur ;
-	private static final int nbr_test = 50 ;
+	private static final int nbr_test = 20 ;
 	private static HashMap<Integer, float []> map_col ; 
 	
 	
-	public static void SetColorSensor(EV3ColorSensor colorsensor) {
+	public static void SetColorSensor(EV3ColorSensor colorsensor, boolean test) {
 		fichier_couleur = new File("Fichier_Color.txt") ;
 		coloradap = new ColorAdapter((BaseSensor) colorsensor) ;
 		map_col = new HashMap<Integer, float []> () ;
+		
+		
+		if (!fichier_couleur.exists() || test ) {
+			InitColor ();
+			parse_file() ;
+		}
+		else parse_file() ;
+		
 	}
 	
-	private static float getDistane (float [] c1, float [] c2){
+	public static double getDistane (float [] c1, float [] c2){
 		
-		return (float) Math.sqrt((Math.pow(c1[0]-c2[0] , 2))+ 
+		return (double) Math.sqrt((Math.pow(c1[0]-c2[0] , 2))+ 
 					             (Math.pow(c1[1]-c2[1] , 2))+ 
 					             (Math.pow(c1[2]-c2[2] , 2)));
 	}
 	
-	public static int getColor () {
+	private static int getColorId() {
 		
 		couleur = coloradap.getColor() ;
 		int R = couleur.getRed() ;
@@ -49,33 +57,37 @@ public class ColorSensor {
 		int B = couleur.getBlue() ;
 		float [] rvb = {R,V,B} ;
 		int Couleur = 0 ;
-		float distance ;
-		float distmin = getDistane(rvb, map_col.get(0)) ; 
-		for (int i=1; i<6 ; i++) {
+		double distance ;
+		double distmin = getDistane(rvb, map_col.get(0)) ; 
+		for (int i=0; i < 5 ; i++) {
 			distance = getDistane(rvb, map_col.get(i)) ; 
 			if (distance < distmin ) {
+				
 				distmin = distance ;
 				Couleur = i ;
 			}
-		}
-		return Couleur ;		
+		} 
+		
+		return Couleur  ;		
 	}
 
 	
 	
-	public static void InitColor () {
+	private static void InitColor () {
 		try {
 			fichier_couleur.delete() ;
 			fichier_couleur.createNewFile() ;
 			wr = new BufferedWriter(new FileWriter(fichier_couleur,true));	
-			LCD.drawString("Detection des Couleur", 0, 3) ;
+			LCD.drawString("Detection des", 1, 3) ;
+			LCD.drawString("Couleurs", 3, 4) ;
 			Delay.msDelay(2000) ;
 			Detecte_color ("Rouge") ;
 			Detecte_color ("Vert") ;
-			Detecte_color ("Blue") ;
 			Detecte_color ("Jaune") ;
-			Detecte_color ("Noire") ;
 			Detecte_color ("Blanc") ;
+			//Detecte_color ("Blue") ;
+			Detecte_color ("Noire") ;
+
 			wr.close() ;
 			LCD.clear() ;
 		}
@@ -83,8 +95,10 @@ public class ColorSensor {
 	}
 	
 	
-	public static void parse_file () throws IOException {	
+	private static void parse_file ()  {	
 	
+	try {	
+		
 		 br = new BufferedReader(new FileReader(fichier_couleur));
 		 String ligne ; 
 		 br.readLine() ;
@@ -111,19 +125,28 @@ public class ColorSensor {
 				  for (int y=0; y<3; y++) rvb[y] = 0 ;
 			  }
 		  }
-		br.close() ;
+		  br.close() ;
+	} 
+	catch (Exception e) {
+		
+	}
+		  
+		
 		  
 	}
 	
+	
 	private static void Detecte_color (String c) throws IOException {
 			LCD.clear() ;
-			LCD.drawString("Détection du "+c, 3, 3);
+			LCD.drawString("Detection du ", 3, 1);
+			LCD.drawString(c, 6, 2);
+			Delay.msDelay(2000) ;
 			wr.write(c+"\n"+"{"+"\n") ;
 						
 			int button=0;
 			// wait for pressing enter button
-			LCD.clear() ;
-			LCD.drawString("appuyer sur ok pour commencer", 0, 2) ;
+			LCD.drawString("Appuyer sur ok ", 2, 4) ;
+			LCD.drawString("pour commencer", 2, 5) ;
 			while(true){
 				button = Button.waitForAnyPress(2);
 				if(button == Button.ID_ENTER) break;
