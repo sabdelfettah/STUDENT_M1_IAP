@@ -11,8 +11,11 @@
 [Abdelfettah, Gaci, Halit Jeu 12 fev 2015 15:14:14 CET]
 - Création d'un autre programme de détéction de couleur en utilisant le mode RGB pour calibrer ; Détection et affichage du résultat. 
 
-[Abdelfettah, Gaci, Halit Jeu dimanche 15 fev 2015 16:07:12 CET]
+[Abdelfettah, Gaci, Halit Dim 15 fev 2015 16:07:12 CET]
 - Création d'un petit programme  pour tester les moteurs en synchronisant les Deux.  
 
-[Abdelfettah, Gaci, Halit Jeu mercredi 25 mars 2015 16:28:34 CET]
+[Abdelfettah, Gaci, Halit Mer 25 mars 2015 16:28:34 CET]
 - Résolution du problème d'accès à la brique sous Jason.
+
+[Abdelfettah Ven 29 mars 2015 22:34:00 CET]
+- Tentative de résolution d'acces au moteurs en mode Remote (à essayer sur le robot).

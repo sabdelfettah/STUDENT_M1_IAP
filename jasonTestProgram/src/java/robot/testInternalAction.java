@@ -6,25 +6,25 @@ import jason.asSemantics.Unifier;
 import jason.asSyntax.StringTermImpl;
 import jason.asSyntax.Term;
 
-public class moveForward extends DefaultInternalAction{
+public class testInternalAction extends DefaultInternalAction{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2204311393918647788L;
-	Move move;
+	private static final long serialVersionUID = -7833373306058727006L;
+	TestAction testAction;
 	Thread thread;
 	
-	public moveForward(){
-		move = new Move();
-		thread = new Thread(move);
+	public testInternalAction(){
+		testAction = new TestAction();
+		thread = new Thread(testAction);
 		thread.start();
 	}
 	
 	public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
 		return un.unifies(new StringTermImpl(System.getProperty("sun.arch.data.model")), args[0])
-				&& un.unifies(new StringTermImpl(move.wasExecuted()+""), args[1])
-				&& un.unifies(new StringTermImpl(move.wasClosed()+""), args[2]);
+				&& un.unifies(new StringTermImpl(testAction.wasExecuted()+""), args[1])
+				&& un.unifies(new StringTermImpl(testAction.wasClosed()+""), args[2]);
 	}
 
 }
