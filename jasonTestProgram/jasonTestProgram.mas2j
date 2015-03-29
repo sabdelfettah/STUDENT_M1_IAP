@@ -4,7 +4,7 @@ MAS jasonTestProgram {
 
 	agents:
 		agent1 sample_agent;
-		agent2 ev3Agent;
+		ev3 ev3Agent;
 		
 	classpath:
 		"C:/Program Files/leJOS EV3/lib/pc/*.jar";

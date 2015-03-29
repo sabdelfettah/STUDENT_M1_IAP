@@ -11,10 +11,11 @@ not_riched(A) :- value(A) & A < 5.
 
 /* Plans */
 
-+!move : not_riched(A) <- .print("Not riched yet : value is ", A); robot.testInternalAction(ModelArch, Executed, Closed); 
-.print("Model Architecture : ", ModelArch);
-.print("Was Executed       : ", Executed);
-.print("Was Closed         : ", Closed);
++!move : not_riched(A) <- 
+.print("Not riched yet");
+.print("Value                : ", A);
+robot.testInternalAction(NbExecutions); 
+.print("Number of exections  : ", NbExecutions);
 -+value(A + 1); !!move.
 
 +!move : not not_riched(A) <- .print("Riched").

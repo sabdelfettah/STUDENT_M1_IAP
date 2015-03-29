@@ -1,30 +1,33 @@
+// Internal action code for project jasonTestProgram
+
 package robot;
 
-import jason.asSemantics.DefaultInternalAction;
-import jason.asSemantics.TransitionSystem;
-import jason.asSemantics.Unifier;
-import jason.asSyntax.StringTermImpl;
-import jason.asSyntax.Term;
+import jason.*;
+import jason.asSemantics.*;
+import jason.asSyntax.*;
 
-public class testInternalAction extends DefaultInternalAction{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7833373306058727006L;
-	TestAction testAction;
-	Thread thread;
+public class testInternalAction extends DefaultInternalAction {
 	
-	public testInternalAction(){
-		testAction = new TestAction();
-		thread = new Thread(testAction);
-		thread.start();
+	private static InternalAction singleton = null;
+	private static short nbExecutions = 0;
+	
+	public static InternalAction create(){
+		if(singleton == null)
+			singleton = new testInternalAction();
+		return singleton;
 	}
 	
-	public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
-		return un.unifies(new StringTermImpl(System.getProperty("sun.arch.data.model")), args[0])
-				&& un.unifies(new StringTermImpl(testAction.wasExecuted()+""), args[1])
-				&& un.unifies(new StringTermImpl(testAction.wasClosed()+""), args[2]);
-	}
+	
 
+    @Override
+    public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
+        // execute the internal action
+//        ts.getAg().getLogger().info("executing internal action 'robot.testInternalAction'");
+//        if (true) { // just to show how to throw another kind of exception
+//            throw new JasonException("not implemented!");
+//        }
+        // everything ok, so returns true
+    	nbExecutions++;
+        return un.unifies(new StringTermImpl(""+nbExecutions), args[0]);
+    }
 }
