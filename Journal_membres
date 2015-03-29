@@ -19,3 +19,9 @@
 
 [Abdelfettah Ven 29 mars 2015 22:34:00 CET]
 - Tentative de résolution d'acces au moteurs en mode Remote (à essayer sur le robot).
+
+[Abdelfettah Sam 30 mars 2015 03:27:00 CET]
+- Résolution du problème du nombre d'exécutions (par le dessign pattern Singleton)
+
+[Abdelfettah Sam 30 mars 2015 03:54:00 CET]
+- Création d'un programme test des moteurs sous Jason (marche répététif ; marche/arrêt) - Non testé

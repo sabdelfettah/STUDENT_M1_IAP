@@ -14,6 +14,7 @@ not_riched(A) :- value(A) & A < 5.
 +!move : not_riched(A) <- 
 .print("Not riched yet");
 .print("Value                : ", A);
+robot.moveForward(O);
 robot.testInternalAction(NbExecutions); 
 .print("Number of exections  : ", NbExecutions);
 -+value(A + 1); !!move.

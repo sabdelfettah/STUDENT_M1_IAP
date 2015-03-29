@@ -1,30 +1,33 @@
+// Internal action code for project jasonTestProgram
+
 package robot;
 
-import jason.asSemantics.DefaultInternalAction;
-import jason.asSemantics.TransitionSystem;
-import jason.asSemantics.Unifier;
-import jason.asSyntax.StringTermImpl;
-import jason.asSyntax.Term;
+import jason.*;
+import jason.asSemantics.*;
+import jason.asSyntax.*;
 
-public class moveForward extends DefaultInternalAction{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2204311393918647788L;
-	Move move;
-	Thread thread;
+public class moveForward extends DefaultInternalAction {
 	
-	public moveForward(){
-		move = new Move();
-		thread = new Thread(move);
-		thread.start();
-	}
+	private static InternalAction singleton = null;
 	
-	public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
-		return un.unifies(new StringTermImpl(System.getProperty("sun.arch.data.model")), args[0])
-				&& un.unifies(new StringTermImpl(move.wasExecuted()+""), args[1])
-				&& un.unifies(new StringTermImpl(move.wasClosed()+""), args[2]);
+	public static InternalAction create(){
+		if(singleton==null)
+			singleton = new moveForward();
+		return singleton;
 	}
 
+    @Override
+    public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
+        // execute the internal action
+//        ts.getAg().getLogger().info("executing internal action 'robot.moveForward'");
+//        if (true) { // just to show how to throw another kind of exception
+//            throw new JasonException("not implemented!");
+//        }
+    	System.out.println("Working ...");
+        //EV3Class.instance().runOnRMI();
+        //EV3Class.instance().rubOnNXT();
+        // everything ok, so returns true
+        System.out.println("Finished.");
+        return true;
+    }
 }
