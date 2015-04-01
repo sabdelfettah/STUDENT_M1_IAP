@@ -19,17 +19,4 @@ public class IRSensor {
 		return (sample[0]) ;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

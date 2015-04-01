@@ -16,7 +16,7 @@ import lejos.robotics.Color;
 import lejos.robotics.ColorAdapter;
 import lejos.utility.Delay;
 
-public class ColorSensor {
+public class ColorSensors {
 	
 	private static ColorAdapter colorAdapLeft ; 
 	private static ColorAdapter colorAdapRight ;
@@ -30,7 +30,7 @@ public class ColorSensor {
 	private static HashMap<Integer, float []> mapColLeft ; 
 	private static HashMap<Integer, float []> mapColRight ;
 	
-	public static void SetColorSensor(EV3ColorSensor colorsensorleft,EV3ColorSensor colorsensorright) {
+	public static void SetColorSensors(EV3ColorSensor colorsensorleft,EV3ColorSensor colorsensorright) {
 		fileColorLeft = new File("FileColorLeft.txt") ;
 		fileColorRight = new File("FileColorRight.txt") ;
 		colorAdapLeft = new ColorAdapter((BaseSensor) colorsensorleft) ;

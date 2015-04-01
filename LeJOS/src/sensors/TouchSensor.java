@@ -13,15 +13,8 @@ public class TouchSensor {
 	}
 	
 	public static boolean isPressed (){
-		
 		touchSensor.fetchSample(sample, 0);
-		
 		return (sample[0] == 1.) ;
 	}
-	
-	
-	
-	
-	
 	
 }
