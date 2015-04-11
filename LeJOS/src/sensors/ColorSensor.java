@@ -37,36 +37,33 @@ public class ColorSensor {
 		colorAdapRight = new ColorAdapter((BaseSensor) colorsensorright) ;
 		mapColLeft = new HashMap<Integer, float []> () ;
 		mapColRight = new HashMap<Integer, float []> () ;
-		
 	}
 	
 	
-	public static void calibrate () {
+	private static void InitCalibrate(String sensor) {
 		int button ;
 		LCD.clear() ;
 		LCD.drawString("Voulez vous ", 1, 2) ;
 		LCD.drawString("calibrer le", 1, 3) ;
-		LCD.drawString("capteur gauche", 1, 4) ;
-		
+		if (sensor.equals("Left")) LCD.drawString("capteur gauche", 1, 4) ;
+		else LCD.drawString("capteur dtoit", 1, 4) ;
 		while (true) {
 			Delay.msDelay(1000);
 			button = Button.waitForAnyPress(2);
 			if ((button == Button.ID_ESCAPE) || 
 			    (button == Button.ID_ENTER) ) break;
 		}
-		if (button == Button.ID_ENTER)  calibrateLeft() ;
-		LCD.clear() ;
-		LCD.drawString("Voulez vous ", 1, 2) ;
-		LCD.drawString("calibrer le", 1, 3) ;
-		LCD.drawString("capteur droit", 1, 4) ;
 		
-		while (true) {
-			Delay.msDelay(1000);
-			button = Button.waitForAnyPress(2);
-			if ((button == Button.ID_ESCAPE) || 
-			    (button == Button.ID_ENTER) ) break;
+		if (button == Button.ID_ENTER) {
+			if (sensor.equals("Left")) calibrateLeft() ;
+			else calibrateRight() ;
+			}
 		}
-		if (button == Button.ID_ENTER)  calibrateRight() ;
+	
+	
+	public static void calibrate () {
+	InitCalibrate("Left") ;
+	InitCalibrate("Right") ;
 	}
 	
 	
