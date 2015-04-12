@@ -24,4 +24,10 @@
 - Résolution du problème du nombre d'exécutions (par le dessign pattern Singleton)
 
 [Abdelfettah Sam 30 mars 2015 03:54:00 CET]
-- Création d'un programme test des moteurs sous Jason (marche répététif ; marche/arrêt) - Non testé
+- Création d'un programme test des moteurs sous Jason (marche répététif ; marche/arrêt) - testé
+
+[Abdelfettah, Gaci, Halit Sam 11 Avr 2015 17:53:00 CET]
+- Création d'un programme avec l'architecture Behaviour
+
+[Abdelfettah Dim 12 Avr 2015 21:44:00 CET]
+- Programme avec l'architecture Behaviour fonctionne (avance+capte+capture+avance+relache+...)

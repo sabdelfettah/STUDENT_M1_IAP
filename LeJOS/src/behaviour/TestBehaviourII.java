@@ -1,8 +1,6 @@
 package behaviour;
 
 import lejos.robotics.subsumption.Behavior;
-import lejos.utility.Delay;
-import motors.HandMotor;
 import motors.RegulatedMotors;
 import sensors.TouchSensor;
 
@@ -23,7 +21,7 @@ public class TestBehaviourII implements Behavior{
 	@Override
 	public boolean takeControl() {
 		// TODO Auto-generated method stub
-		return !TouchSensor.isPressed() && HandMotor.getState()!=HandMotor.CLOSE;
+		return !TouchSensor.isPressed();
 	}
 
 	@Override
@@ -36,9 +34,9 @@ public class TestBehaviourII implements Behavior{
 	public void suppress() {
 		// TODO Auto-generated method stub
 		RegulatedMotors.stopMoving();
-		RegulatedMotors.movebackward();
-		Delay.msDelay(2000);
-		RegulatedMotors.stopMoving();
+		//RegulatedMotors.moveBackward();
+		//Delay.msDelay(2000);
+		//RegulatedMotors.stopMoving();
 	}
 
 }

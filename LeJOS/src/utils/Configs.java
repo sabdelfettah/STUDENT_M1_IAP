@@ -52,10 +52,11 @@ public class Configs {
 		EV3 ev3 = (EV3) BrickFinder.getLocal();
 		drawProcessing("Initialising");
 		TouchSensor.setTouchSesor(new EV3TouchSensor(ev3.getPort(Configs.TouchSensorPort)));
-		HandMotor.setHand(getHandMotor(), HandMotor.CLOSE);
+		HandMotor.setHand(getHandMotor(), HandMotor.CATCHED);
 		RegulatedMotors.setMotors(getLeftMotor(), getRightMotor());
 		ColorSensors.SetColorSensors(new EV3ColorSensor(ev3.getPort(LeftColorSensor)), new EV3ColorSensor(ev3.getPort(RightColorSensor)));
-		ColorSensors.calibrate();
+		drawProcessing("Asking for calibration");
+		//ColorSensors.calibrate();
 		drawProcessing("Testing the hand motor");
 		HandMotor.releaseObject();
 		drawProcessing("Testing the other motors");
