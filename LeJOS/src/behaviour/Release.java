@@ -31,11 +31,8 @@ public class Release implements Behavior{
 	@Override
 	public void action() {
 		RegulatedMotors.stopMoving();
-		Controller.setReleasing(true);
 		Configs.drawProcessing("Releasing");
 		HandMotor.releaseObject();
-		Controller.setReleasing(false);
-		Controller.setCatched(false);
 	}
 
 	@Override

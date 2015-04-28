@@ -1,4 +1,4 @@
-package programs;
+package test;
 
 import lejos.hardware.BrickFinder;
 import lejos.hardware.ev3.EV3;

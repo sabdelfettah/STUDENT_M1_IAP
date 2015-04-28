@@ -1,6 +1,7 @@
 package motors;
 
 import sensors.TouchSensor;
+import utils.Controller;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.utility.Delay;
 
@@ -27,15 +28,15 @@ public class HandMotor {
 
 	public static void  catchObject(int speed) {
 		if (state == RELEASED) {
+			Controller.setCatching(true);
 			hand.setSpeed(speed);
 			hand.backward();
 			//while(!TouchSensor.isPressed());
-			Delay.msDelay(200);
-			hand.stop(true);
-			hand.forward();
-			Delay.msDelay(1200);
+			Delay.msDelay(1000);
 			hand.stop(true);
 			state = CATCHED;
+			Controller.setCatching(false);
+			Controller.setCatched(true);
 		} 
 	}
 
@@ -45,6 +46,7 @@ public class HandMotor {
 
 	public static void releaseObject(int speed) {
 		if (state == CATCHED) {
+			Controller.setReleasing(true);
 			hand.setSpeed(speed);
 			hand.backward();
 			while(!TouchSensor.isPressed());
@@ -53,6 +55,8 @@ public class HandMotor {
 			while(TouchSensor.isPressed());
 			hand.stop(true);
 			state = RELEASED;
+			Controller.setReleasing(false);
+			Controller.setCatched(false);
 		}
 	}
 

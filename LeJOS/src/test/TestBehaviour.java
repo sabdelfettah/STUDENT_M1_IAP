@@ -1,8 +1,8 @@
-package behaviour;
+package test;
 
-import sensors.TouchSensor;
+import lejos.hardware.lcd.LCD;
 import lejos.robotics.subsumption.Behavior;
-import motors.HandMotor;
+import lejos.utility.Delay;
 
 public class TestBehaviour implements Behavior{
 	
@@ -21,19 +21,24 @@ public class TestBehaviour implements Behavior{
 	@Override
 	public boolean takeControl() {
 		// TODO Auto-generated method stub
-		return TouchSensor.isPressed();
+		return TestController.getCount()==10;
 	}
 
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
-		HandMotor.catchObject();
+		TestController.pp();
+		LCD.clear();
+		LCD.drawString("action Test I", 2, 2);
+		Delay.msDelay(2000);
 	}
 
 	@Override
 	public void suppress() {
 		// TODO Auto-generated method stub
-		HandMotor.releaseObject();
+		LCD.clear();
+		LCD.drawString("suppress Test I", 2, 2);
+		Delay.msDelay(2000);
 	}
 
 }

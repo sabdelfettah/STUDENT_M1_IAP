@@ -1,5 +1,6 @@
 package motors;
 
+import utils.Controller;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.utility.Delay;
@@ -22,6 +23,7 @@ public class RegulatedMotors {
 	}
 
 	public static void moveForward(int speed) {
+		Controller.setMoving(true);
 		leftMotor.setSpeed(speed);
 		rightMotor.setSpeed(speed);
 		leftMotor.forward();
@@ -30,6 +32,7 @@ public class RegulatedMotors {
 	}
 
 	public static void moveBackward(int speed) {
+		Controller.setMoving(true);
 		leftMotor.setSpeed(speed);
 		rightMotor.setSpeed(speed);
 		leftMotor.backward();
@@ -39,10 +42,11 @@ public class RegulatedMotors {
 	public static void stopMoving() {
 		leftMotor.stop(true);
 		rightMotor.stop(true);
-
+		Controller.setMoving(false);
 	}
 
 	public static void turnleft(float angle) {
+		Controller.setMoving(true);
 		int angle_tmp = (int) (angle * 1300 / 90);
 		leftMotor.setSpeed(300);
 		rightMotor.setSpeed(300);
@@ -50,10 +54,11 @@ public class RegulatedMotors {
 		rightMotor.forward();
 		Delay.msDelay(angle_tmp);
 		stopMoving();
-
+		Controller.setMoving(false);
 	}
 
 	public static void turnright(float angle) {
+		Controller.setMoving(true);
 		int angle_tmp = (int) (angle * 1300 / 90);
 		leftMotor.setSpeed(300);
 		rightMotor.setSpeed(300);
@@ -61,7 +66,21 @@ public class RegulatedMotors {
 		leftMotor.forward();
 		Delay.msDelay(angle_tmp);
 		stopMoving();
+		Controller.setMoving(false);
+	}
 
+	public static void turnLeft() {
+		leftMotor.setSpeed(300);
+		rightMotor.setSpeed(300);
+		leftMotor.backward();
+		rightMotor.forward();
+	}
+
+	public static void turnRight() {
+		leftMotor.setSpeed(300);
+		rightMotor.setSpeed(300);
+		rightMotor.backward();
+		leftMotor.forward();
 	}
 
 }

@@ -1,11 +1,11 @@
 package behaviour;
 
-import sensors.TouchSensor;
-import utils.Configs;
-import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
 import motors.HandMotor;
 import motors.RegulatedMotors;
+import sensors.TouchSensor;
+import utils.Configs;
+import utils.Controller;
 
 public class Catch implements Behavior{
 	
@@ -23,7 +23,8 @@ public class Catch implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if( TouchSensor.isPressed() ){
+		if( TouchSensor.isPressed() && !Controller.isCatched()){
+		//if( TouchSensor.isPressed() ){
 			return true;
 		}
 		return false;
@@ -32,11 +33,9 @@ public class Catch implements Behavior{
 	@Override
 	public void action() {
 		RegulatedMotors.stopMoving();
-		Controller.setCatching(true);
 		Configs.drawProcessing("Catching");
 		HandMotor.catchObject();
-		Controller.setCatching(false);
-		Controller.setCatched(true);
+		Controller.setOkToRealease(false);
 	}
 
 	@Override

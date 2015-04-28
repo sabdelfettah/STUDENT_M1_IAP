@@ -47,9 +47,14 @@ public class Configs {
 	}
 	
 	// Initialising methods
-	public static EV3 InitAll(){
+	public static EV3 InitBrick(){
 		drawProcessing("Getting EV3");
 		EV3 ev3 = (EV3) BrickFinder.getLocal();
+		return ev3;
+	}
+
+	public static EV3 InitAll(){
+		EV3 ev3 = InitBrick();
 		drawProcessing("Initialising");
 		TouchSensor.setTouchSesor(new EV3TouchSensor(ev3.getPort(Configs.TouchSensorPort)));
 		HandMotor.setHand(getHandMotor(), HandMotor.CATCHED);
