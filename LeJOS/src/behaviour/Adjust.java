@@ -47,6 +47,10 @@ public class Adjust implements Behavior{
 			RegulatedMotors.stopMoving();
 		}
 	}
+	
+	private void lookFor(){
+		
+	}
 
 	@Override
 	public void suppress() {

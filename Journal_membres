@@ -31,3 +31,9 @@
 
 [Abdelfettah Dim 12 Avr 2015 21:44:00 CET]
 - Programme avec l'architecture Behaviour fonctionne (avance+capte+capture+avance+relache+...)
+
+[Abdelfettah Dim 28 Avr 2015 13:30:00 CET]
+- Création d'un programme test (affichage de 1 à 10) avec l'architecture Behaviour pour voir l'impact de l'ordonnancement des Behaviours dans la liste "behaviourList"
+
+[Abdelfettah Dim 28 Avr 2015 17:44:00 CET]
+- Création des behaviours pour le programme proncipale (du projet).
