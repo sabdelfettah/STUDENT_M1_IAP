@@ -81,6 +81,7 @@ public class Controller {
 		Releasing = false;
 		Moving = false;
 		OkToRelease = false;
+		computeOkToMove();
 	}
 
 	public static boolean isLost() {

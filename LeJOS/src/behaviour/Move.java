@@ -1,5 +1,6 @@
 package behaviour;
 
+import sensors.ColorSensors;
 import utils.Configs;
 import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
@@ -22,7 +23,7 @@ public class Move implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if(!Controller.isCatching() && !Controller.isReleasing()){
+		if(ColorSensors.leftColorEqualsTo(ColorSensors.WHITE) && ColorSensors.rightColorEqualsTo(ColorSensors.WHITE)){
 			return true;
 		}
 		return false;
