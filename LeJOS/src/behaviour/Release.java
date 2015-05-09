@@ -33,6 +33,7 @@ public class Release implements Behavior{
 		RegulatedMotors.stopMoving();
 		Configs.drawProcessing("Releasing");
 		HandMotor.releaseObject();
+		Controller.setOktoAdjust(true) ; 
 	}
 
 	@Override

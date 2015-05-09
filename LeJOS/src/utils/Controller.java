@@ -10,8 +10,16 @@ public class Controller {
 	private static boolean Moving = false;
 	private static boolean Lost = false;
 	private static boolean NeedToCheckPosition = false;
+	private static boolean oktoAdjust = false ; 
 
-
+	public static boolean isOkToAdjust () {
+		return oktoAdjust ;
+	} 
+	
+	public static void setOktoAdjust (boolean b) {
+		oktoAdjust = b ;
+	}
+	
 	public static boolean isCatching() {
 		return Catching;
 	}
@@ -53,26 +61,6 @@ public class Controller {
 	public static void setMoving(boolean moving) {
 		Controller.Moving = moving;
 	}
-
-//	public static long getTime() {
-//		return time;
-//	}
-//
-//	public static void setTime(long time) {
-//		Controller.time = time;
-//	}
-//
-//	public static int getCount() {
-//		return count;
-//	}
-//
-//	public static void setCount(int count) {
-//		Controller.count = count;
-//	}
-//
-//	public static void pp() {
-//		count++;
-//	}
 
 	public static void setAllToFalse() {
 		Catched = false;

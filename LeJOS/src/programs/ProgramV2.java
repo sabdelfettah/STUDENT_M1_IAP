@@ -20,5 +20,4 @@ public class ProgramV2 {
 		arbitrator.start();
 		ev3.getAudio().systemSound(Audio.BEEP);
 	}
-
 }

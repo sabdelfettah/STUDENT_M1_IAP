@@ -28,19 +28,18 @@ public class Adjust implements Behavior{
 	@Override
 	public void action() {
 		RegulatedMotors.stopMoving();
-		//Delay.msDelay(1000);
 		int colorLeft = ColorSensors.getLeftColorId(); 
 		int colorRight = ColorSensors.getRightColorId();
-		if(colorLeft != 0 && colorRight != 0){
+		if(colorLeft != ColorSensors.WHITE && colorRight != ColorSensors.WHITE){
 			Delay.msDelay(3000);
 			// a completer
-		}else if(colorLeft != 0){
+		}else if(colorLeft != ColorSensors.WHITE){
 			RegulatedMotors.turnleft();
-			while( ! ColorSensors.leftColorEqualsTo(0) ) ;
+			while(!ColorSensors.leftColorEqualsTo(ColorSensors.WHITE)) ;
 			RegulatedMotors.stopMoving();
-		}else if(colorRight != 0){
+		}else if(colorRight != ColorSensors.WHITE){
 			RegulatedMotors.turnright();
-			while( ! ColorSensors.rightColorEqualsTo(0) ) ;
+			while( ! ColorSensors.rightColorEqualsTo(ColorSensors.WHITE) ) ;
 			RegulatedMotors.stopMoving();
 		}
 	}
