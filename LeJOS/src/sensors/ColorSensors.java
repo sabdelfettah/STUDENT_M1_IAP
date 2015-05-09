@@ -24,8 +24,6 @@ public class ColorSensors {
 	public static final int RED = 3;
 	public static final int GREEN = 4;
 	public static final int YELLOW = 5;
-	private static final short leftID = 0;
-	private static final short rightID = 1;
 	private static ColorAdapter LeftColorAdapter;
 	private static ColorAdapter RightColorAdapter;
 	private static File fileColorLeft;
@@ -34,10 +32,11 @@ public class ColorSensors {
 	private static BufferedReader br;
 	private static Color color;
 	private static final int nbrTest = 20;
-	private static final int nbrColor = 5;
+	private static final int nbrColor = 2;
 	private static HashMap<Integer, float[]> mapLeftSensor;
 	private static HashMap<Integer, float[]> mapRightSensor;
 
+	
 	public static void SetColorSensors(EV3ColorSensor leftColorSensor, EV3ColorSensor rightColorSensor) {
 		fileColorLeft = new File("FileColorLeft.txt");
 		fileColorRight = new File("FileColorRight.txt");
@@ -47,62 +46,51 @@ public class ColorSensors {
 		mapRightSensor = new HashMap<Integer, float[]>();
 	}
 
-	// comparaison methods
-	public static boolean leftColorEqualsTo(int ColorID) {
-		return getLeftColorId() == ColorID;
-	}
-
-	public static boolean rightColorEqualsTo(int ColorID) {
-		return getRightColorId() == ColorID;
-	}
-
-	public static boolean isColorsDifferent() {
-		return getLeftColorId() != getRightColorId();
-	}
-
-	//
-
-	// calibrating methods
-	private static void InitCalibrate(short sensorID) {
+	private static void InitCalibrate(String sensor) {
 		int button;
 		LCD.clear();
 		LCD.drawString("Voulez vous ", 1, 2);
 		LCD.drawString("calibrer le", 1, 3);
-		if (sensorID == leftID)
-			LCD.drawString("capteur gauche", 1, 4);
+		if (sensor.equals("Left"))
+			LCD.drawString("capteur gauche ", 1, 4);
 		else
-			LCD.drawString("capteur droit", 1, 4);
+			LCD.drawString("capteur droit ", 1, 4);
 		while (true) {
-			Delay.msDelay(1000);
+			Delay.msDelay(500);
 			button = Button.waitForAnyPress(2);
 			if ((button == Button.ID_ESCAPE) || (button == Button.ID_ENTER))
 				break;
 		}
 
 		if (button == Button.ID_ENTER) {
-			if (sensorID == leftID)
-				calibrateLeft();
+			if (sensor.equals("Left"))
+				calibrate("Left");
 			else
-				calibrateRight();
+				calibrate("Right") ;
 		}
+		parse_file(sensor) ;
 	}
 
 	public static void calibrate() {
-		InitCalibrate(leftID);
-		InitCalibrate(rightID);
+		InitCalibrate("Left");
+		InitCalibrate("Right");
 	}
 
-	private static void calibrate(short sensorID) {
+	private static void calibrate(String sensor) {
 		File theFile;
 		int button = 0;
-		if (sensorID == leftID)
+		if (sensor.equals("Left")) 
 			theFile = fileColorLeft;
 		else
 			theFile = fileColorRight;
 
 		if (!theFile.exists()) {
-			InitColor(sensorID);
+			InitColor(sensor);
 		} else {
+			LCD.clear() ;
+			LCD.drawString("Fichier_existant", 1, 1) ;
+			LCD.drawString("Voulez vous", 2, 2) ;
+			LCD.drawString("Calibrer", 3, 3) ;
 			while (true) {
 				Delay.msDelay(1000);
 				button = Button.waitForAnyPress(2);
@@ -110,111 +98,19 @@ public class ColorSensors {
 					break;
 			}
 			if (button == Button.ID_ENTER)
-				InitColor(sensorID);
+				InitColor(sensor);
 		}
-		parse_file(sensorID);
+		
 	}
 
-	private static void calibrateLeft() {
-		calibrate(leftID);
-	}
 
-	private static void calibrateRight() {
-		calibrate(rightID);
-	}
-
-	private static void InitColor(short sensorID) {
-		try {
-			LCD.clear();
-			String capteur;
-			File theFile;
-			if (sensorID == leftID) {
-				theFile = fileColorLeft;
-				capteur = "Gauche";
-			} else {
-				theFile = fileColorRight;
-				capteur = "Droite";
-			}
-			theFile.delete();
-			theFile.createNewFile();
-			wr = new BufferedWriter(new FileWriter(theFile, true));
-			LCD.drawString("Calibrage du", 1, 3);
-			LCD.drawString("Capteur " + capteur, 1, 4);
-			Delay.msDelay(2000);
-			LCD.clear();
-			LCD.drawString("Detection des", 1, 3);
-			LCD.drawString("Couleurs", 3, 4);
-			Delay.msDelay(2000);
-			Detecte_color("Blanc", sensorID);
-			Detecte_color("Noir", sensorID);
-			// Detecte_color ("Blue", sensorID) ;
-			// Detecte_color("Rouge", sensorID);
-			// Detecte_color("Vert", sensorID);
-			// Detecte_color("Jaune", sensorID);
-			wr.close();
-			LCD.clear();
-		} catch (IOException e) {
-		}
-	}
-
-	private static void parse_file(short sensorID) {
-		if (sensorID == leftID) {
-			pars(fileColorLeft, sensorID);
-		} else {
-			pars(fileColorRight, sensorID);
-		}
-	}
-
-	private static void pars(File theFile, short sensorID) {
-		LCD.clear();
-		try {
-			br = new BufferedReader(new FileReader(theFile));
-			String ligne;
-			br.readLine();
-			br.readLine();
-			String[] s;
-			int[] rvb = { 0, 0, 0 };
-			float[] tab_moy_rvb;
-			int i = 0;
-
-			while ((ligne = br.readLine()) != null) {
-				if (!ligne.equals("}")) {
-					s = ligne.split(" ");
-					for (int k = 0; k < 3; k++)
-						rvb[k] = rvb[k] + Integer.parseInt(s[k]);
-				} else {
-					br.readLine();
-					br.readLine();
-
-					tab_moy_rvb = new float[3];
-					for (int j = 0; j < 3; j++)
-						tab_moy_rvb[j] = rvb[j] / nbrTest;
-					if (sensorID == leftID)
-						mapLeftSensor.put(i, tab_moy_rvb);
-					else
-						mapRightSensor.put(i, tab_moy_rvb);
-					i++;
-					for (int y = 0; y < 3; y++)
-						rvb[y] = 0;
-				}
-			}
-			br.close();
-		} catch (Exception e) {
-
-		}
-		LCD.clear();
-		LCD.drawString("Fin de ", 3, 3);
-		LCD.drawString("Calibrage ", 2, 4);
-		Delay.msDelay(2000);
-	}
-
-	// detecting methods
 	public static double getDistane(float[] c1, float[] c2) {
 
 		return (double) Math.sqrt((Math.pow(c1[0] - c2[0], 2)) + (Math.pow(c1[1] - c2[1], 2))
 				+ (Math.pow(c1[2] - c2[2], 2)));
 	}
 
+	
 	private static String getColorName(String sensor) {
 		int c;
 		if (sensor.equals("Left"))
@@ -239,7 +135,9 @@ public class ColorSensors {
 			return null;
 		}
 	}
-
+	
+	
+	
 	public static String getLeftColorName() {
 		return getColorName("Left");
 	}
@@ -248,8 +146,8 @@ public class ColorSensors {
 		return getColorName("Right");
 	}
 
-	private static int getColorId(short sensorID) {
-		if (sensorID == leftID)
+	private static int getColorId(String sensor) {
+		if (sensor.equals("Left"))
 			color = LeftColorAdapter.getColor();
 		else
 			color = RightColorAdapter.getColor();
@@ -263,13 +161,13 @@ public class ColorSensors {
 		int Couleur = 0;
 		double distance;
 		double distmin;
-		if (sensorID == leftID)
+		if (sensor.equals("Left"))
 			distmin = getDistane(rvb, mapLeftSensor.get(0));
 		else
 			distmin = getDistane(rvb, mapRightSensor.get(0));
 
 		for (int i = 1; i < nbrColor; i++) {
-			if (sensorID == leftID)
+			if (sensor.equals("Left"))
 				distance = getDistane(rvb, mapLeftSensor.get(i));
 			else
 				distance = getDistane(rvb, mapRightSensor.get(i));
@@ -282,14 +180,106 @@ public class ColorSensors {
 	}
 
 	public static int getLeftColorId() {
-		return getColorId(leftID);
+		return getColorId("Left");
 	}
 
 	public static int getRightColorId() {
-		return getColorId(rightID);
+		return getColorId("Right");
 	}
 
-	private static void Detecte_color(String c, short sensorID) throws IOException {
+	private static void InitColor(String sensor) {
+		try {
+			LCD.clear();
+			String capteur;
+			File theFile;
+			if (sensor.equals("Left")) {
+				theFile = fileColorLeft;
+				capteur = "Gauche";
+			} else {
+				theFile = fileColorRight;
+				capteur = "Droite";
+			}
+			theFile.delete();
+			theFile.createNewFile();
+			wr = new BufferedWriter(new FileWriter(theFile, true));
+			LCD.drawString("Calibrage du", 1, 3);
+			LCD.drawString("Capteur " + capteur, 1, 4);
+			Delay.msDelay(2000);
+			LCD.clear();
+			LCD.drawString("Detection des", 1, 3);
+			LCD.drawString("Couleurs", 3, 4);
+			Delay.msDelay(2000);
+			Detecte_color("Blanc", sensor);
+			Detecte_color("Noir", sensor);
+			Detecte_color ("Blue", sensor) ;
+			Detecte_color("Rouge", sensor);
+			Detecte_color("Vert", sensor);
+			Detecte_color("Jaune", sensor);
+			wr.close();
+			LCD.clear();
+		} catch (IOException e) {
+		}
+	}
+	
+	
+	private static void pars (File theFile, String sensor) {
+		LCD.clear();
+		try {
+		br = new BufferedReader(new FileReader(theFile));
+		String ligne;
+		br.readLine();
+		br.readLine();
+		String[] s;
+		int[] rvb = { 0, 0, 0 };
+		float[] tab_moy_rvb;
+		int i = 0;
+
+		while ((ligne = br.readLine()) != null) {
+			if (!ligne.equals("}")) {
+				s = ligne.split(" ");
+				for (int k = 0; k < 3; k++)
+					rvb[k] = rvb[k] + Integer.parseInt(s[k]);
+			} else {
+				br.readLine();
+				br.readLine();
+
+				tab_moy_rvb = new float[3];
+				for (int j = 0; j < 3; j++)
+					tab_moy_rvb[j] = rvb[j] / nbrTest;
+				if (sensor.equals("Left"))
+					mapLeftSensor.put(i, tab_moy_rvb);
+				else
+					mapRightSensor.put(i, tab_moy_rvb);
+				i++;
+				for (int y = 0; y < 3; y++)
+					rvb[y] = 0;
+			}
+		}
+		br.close();
+	} catch (Exception e) {
+
+	}
+
+	LCD.clear();
+	LCD.drawString("Fin de ", 3, 3);
+	LCD.drawString("Calibrage ", 2, 4);
+	Delay.msDelay(2000);
+		
+	}
+
+	
+	private static void parse_file(String sensor) {
+		
+			if (sensor.equals("Left")) {
+				pars(fileColorLeft, sensor) ;
+			} else {
+				pars(fileColorRight, sensor) ;
+			}
+
+		
+	}
+
+	private static void Detecte_color(String c, String sensor) throws IOException {
 		LCD.clear();
 		LCD.drawString("Detection du ", 3, 1);
 		LCD.drawString(c, 6, 2);
@@ -310,7 +300,7 @@ public class ColorSensors {
 
 		for (int i = 0; i < nbrTest; i++) {
 			LCD.clear();
-			if (sensorID == leftID)
+			if (sensor.equals("Left"))
 				color = LeftColorAdapter.getColor();
 			else
 				color = RightColorAdapter.getColor();
@@ -323,4 +313,21 @@ public class ColorSensors {
 		}
 		wr.write("}" + "\n");
 	}
+
+	public static boolean leftColorEqualsTo(int ColorID) {
+		return getLeftColorId() == ColorID;
+	}
+
+	public static boolean rightColorEqualsTo(int ColorID) {
+		return getRightColorId() == ColorID;
+	}
+
+	public static boolean isColorsDifferent() {
+		return getLeftColorId() != getRightColorId();
+	}
+
 }
+
+
+
+

@@ -23,7 +23,8 @@ public class Move implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if(ColorSensors.leftColorEqualsTo(ColorSensors.WHITE) && ColorSensors.rightColorEqualsTo(ColorSensors.WHITE)){
+		if(ColorSensors.leftColorEqualsTo(0) && ColorSensors.rightColorEqualsTo(0) 
+				&& (!Controller.isCatching())){
 			return true;
 		}
 		return false;
@@ -33,7 +34,7 @@ public class Move implements Behavior{
 	public void action() {
 		suppress = false;
 		Configs.drawProcessing("Moving");
-		RegulatedMotors.moveForward(200);
+		RegulatedMotors.moveForward(300);
 		while(!suppress){
 			Thread.yield();
 		}

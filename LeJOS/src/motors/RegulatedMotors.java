@@ -1,6 +1,6 @@
 package motors;
 
-import utils.Controller;
+import sensors.ColorSensors;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.utility.Delay;
@@ -19,20 +19,18 @@ public class RegulatedMotors {
 	}
 	
 	public static void moveForward() {
-		moveForward(2000);
+		moveForward(300);
 	}
 
 	public static void moveForward(int speed) {
-		Controller.setMoving(true);
 		leftMotor.setSpeed(speed);
 		rightMotor.setSpeed(speed);
 		leftMotor.forward();
 		rightMotor.forward();
-		LCD.drawString("starting", 0, 3);
+		
 	}
 
 	public static void moveBackward(int speed) {
-		Controller.setMoving(true);
 		leftMotor.setSpeed(speed);
 		rightMotor.setSpeed(speed);
 		leftMotor.backward();
@@ -42,11 +40,19 @@ public class RegulatedMotors {
 	public static void stopMoving() {
 		leftMotor.stop(true);
 		rightMotor.stop(true);
-		Controller.setMoving(false);
+
 	}
 
+	
+	public static void turnleft () {
+		leftMotor.setSpeed(300);
+		rightMotor.setSpeed(300);
+		leftMotor.backward();
+		rightMotor.forward();
+	}
+	
+	
 	public static void turnleft(float angle) {
-		Controller.setMoving(true);
 		int angle_tmp = (int) (angle * 1300 / 90);
 		leftMotor.setSpeed(300);
 		rightMotor.setSpeed(300);
@@ -54,11 +60,18 @@ public class RegulatedMotors {
 		rightMotor.forward();
 		Delay.msDelay(angle_tmp);
 		stopMoving();
-		Controller.setMoving(false);
-	}
 
+	}
+	
+	
+	public static void turnright () {
+		leftMotor.setSpeed(300);
+		rightMotor.setSpeed(300);
+		rightMotor.backward();
+		leftMotor.forward();
+	}
+	
 	public static void turnright(float angle) {
-		Controller.setMoving(true);
 		int angle_tmp = (int) (angle * 1300 / 90);
 		leftMotor.setSpeed(300);
 		rightMotor.setSpeed(300);
@@ -66,21 +79,38 @@ public class RegulatedMotors {
 		leftMotor.forward();
 		Delay.msDelay(angle_tmp);
 		stopMoving();
-		Controller.setMoving(false);
+
 	}
 
-	public static void turnLeft() {
-		leftMotor.setSpeed(300);
-		rightMotor.setSpeed(300);
-		leftMotor.backward();
-		rightMotor.forward();
+	
+	private static void regler (boolean c) {
+		if (c) {
+			while (ColorSensors.getLeftColorId() != 0  ) {
+				turnright() ;
+			} 
+			RegulatedMotors.stopMoving() ;
+		}
+		else  {
+			while (ColorSensors.getRightColorId() != 0  ) {
+				turnleft() ;
+			} 
+			RegulatedMotors.stopMoving() ;
+		}
+		
+		
 	}
-
-	public static void turnRight() {
-		leftMotor.setSpeed(300);
-		rightMotor.setSpeed(300);
-		rightMotor.backward();
-		leftMotor.forward();
+	
+	public static void suivre_ligne () {
+		
+		while (true) {
+			RegulatedMotors.moveForward() ;
+			while ( ColorSensors.getLeftColorId() == 0 && ColorSensors.getRightColorId() == 0) {} ;
+			if ( ColorSensors.getLeftColorId() != 0) regler (true) ;
+			else regler (false) ;
+		}
 	}
-
+	
+	
+	
+	
 }

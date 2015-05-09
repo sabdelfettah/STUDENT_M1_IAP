@@ -22,28 +22,25 @@ public class Adjust implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if(ColorSensors.isColorsDifferent()){
-			return true;
-		}
-		return false;
+		return ColorSensors.isColorsDifferent() ;
 	}
 
 	@Override
 	public void action() {
 		RegulatedMotors.stopMoving();
-		Delay.msDelay(1000);
+		//Delay.msDelay(1000);
 		int colorLeft = ColorSensors.getLeftColorId(); 
 		int colorRight = ColorSensors.getRightColorId();
-		if(colorLeft != ColorSensors.WHITE && colorRight != ColorSensors.WHITE){
+		if(colorLeft != 0 && colorRight != 0){
 			Delay.msDelay(3000);
 			// a completer
-		}else if(colorLeft != ColorSensors.WHITE){
-			RegulatedMotors.turnLeft();
-			while( ! ColorSensors.leftColorEqualsTo(ColorSensors.WHITE) ) ;
+		}else if(colorLeft != 0){
+			RegulatedMotors.turnleft();
+			while( ! ColorSensors.leftColorEqualsTo(0) ) ;
 			RegulatedMotors.stopMoving();
-		}else if(colorRight != ColorSensors.WHITE){
-			RegulatedMotors.turnRight();
-			while( ! ColorSensors.rightColorEqualsTo(ColorSensors.WHITE) ) ;
+		}else if(colorRight != 0){
+			RegulatedMotors.turnright();
+			while( ! ColorSensors.rightColorEqualsTo(0) ) ;
 			RegulatedMotors.stopMoving();
 		}
 	}

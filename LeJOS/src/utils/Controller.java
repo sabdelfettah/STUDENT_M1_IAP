@@ -10,8 +10,7 @@ public class Controller {
 	private static boolean Moving = false;
 	private static boolean Lost = false;
 	private static boolean NeedToCheckPosition = false;
-//	private static int count = 0;
-//	private static long time;
+
 
 	public static boolean isCatching() {
 		return Catching;
