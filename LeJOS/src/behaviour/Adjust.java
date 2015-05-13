@@ -1,7 +1,6 @@
 package behaviour;
 
 import sensors.ColorSensors;
-import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 import motors.RegulatedMotors;

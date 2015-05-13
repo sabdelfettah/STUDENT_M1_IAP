@@ -1,5 +1,6 @@
 package behaviour;
 
+import sensors.ColorSensors;
 import utils.Configs;
 import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
@@ -22,10 +23,7 @@ public class Release implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if( Controller.isCatched() && Controller.isOkToRelease()  ){
-			return true;
-		}
-		return false;
+		return Controller.isCatched() && ColorSensors.lenfAndRightEquals(ColorSensors.BLACK);
 	}
 
 	@Override

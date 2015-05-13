@@ -20,10 +20,14 @@ public class ColorSensors {
 
 	public static final int WHITE = 0;
 	public static final int BLACK = 1;
-	public static final int BLUE = 2;
-	public static final int RED = 3;
-	public static final int GREEN = 4;
-	public static final int YELLOW = 5;
+	public static final int BLUE = -1;
+//	public static final int BLUE = 2;
+//	public static final int RED = 3;
+//	public static final int GREEN = 4;
+//	public static final int YELLOW = 5;
+	public static final int RED = 2;
+	public static final int GREEN = 3;
+	public static final int YELLOW = 4;
 	private static ColorAdapter LeftColorAdapter;
 	private static ColorAdapter RightColorAdapter;
 	private static File fileColorLeft;
@@ -211,7 +215,7 @@ public class ColorSensors {
 			Delay.msDelay(2000);
 			Detecte_color("Blanc", sensor);
 			Detecte_color("Noir", sensor);
-			Detecte_color ("Blue", sensor) ;
+			//Detecte_color ("Blue", sensor) ;
 			Detecte_color("Rouge", sensor);
 			Detecte_color("Vert", sensor);
 			Detecte_color("Jaune", sensor);
@@ -312,6 +316,12 @@ public class ColorSensors {
 			Delay.msDelay(500);
 		}
 		wr.write("}" + "\n");
+	}
+	
+	//
+	
+	public static boolean lenfAndRightEquals(int ColorID){
+		return getLeftColorId() == ColorID && getRightColorId() == ColorID;
 	}
 
 	public static boolean leftColorEqualsTo(int ColorID) {

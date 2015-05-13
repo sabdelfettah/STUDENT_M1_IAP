@@ -23,11 +23,7 @@ public class Move implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if(ColorSensors.leftColorEqualsTo(ColorSensors.WHITE) && ColorSensors.rightColorEqualsTo(ColorSensors.WHITE) 
-				&& (!Controller.isCatching())){
-			return true;
-		}
-		return false;
+		return ColorSensors.lenfAndRightEquals(ColorSensors.WHITE) && ! Controller.isCatchingOrReleasing();
 	}
 
 	@Override

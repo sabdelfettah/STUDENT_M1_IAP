@@ -45,6 +45,10 @@ public class Controller {
 		Releasing = releasing;
 		computeOkToMove();
 	}
+	
+	public static boolean isCatchingOrReleasing(){
+		return Catching || Releasing;
+	}
 
 	public static boolean isOkToRelease() {
 		return OkToRelease;

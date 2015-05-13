@@ -1,7 +1,6 @@
 package motors;
 
 import sensors.ColorSensors;
-import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.utility.Delay;
 

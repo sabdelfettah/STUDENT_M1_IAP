@@ -23,11 +23,7 @@ public class FollowLine implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		if (Controller.isOkToMove() && ColorSensors.getLeftColorId() == ColorSensors.WHITE
-				&& ColorSensors.getRightColorId() == ColorSensors.WHITE) {
-			return true;
-		}
-		return false;
+		return (Controller.isOkToMove() && ColorSensors.lenfAndRightEquals(ColorSensors.WHITE));
 	}
 
 	@Override

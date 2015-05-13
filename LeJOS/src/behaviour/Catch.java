@@ -2,7 +2,6 @@ package behaviour;
 
 import lejos.hardware.lcd.LCD;
 import lejos.robotics.subsumption.Behavior;
-import lejos.utility.Delay;
 import motors.HandMotor;
 import motors.RegulatedMotors;
 import sensors.TouchSensor;
@@ -25,14 +24,11 @@ public class Catch implements Behavior{
 
 	@Override
 	public boolean takeControl() {
-		if( TouchSensor.isPressed() && !Controller.isCatched()){
 		LCD.clear() ;
 		LCD.drawString("ouiiiiiiiiii", 0, 1) ;
 		//Delay.msDelay(2000) ;
 		//if( TouchSensor.isPressed() ){
-			return true;
-		}
-		return false;
+		return TouchSensor.isPressed() && !Controller.isCatched();
 	}
 
 	@Override
