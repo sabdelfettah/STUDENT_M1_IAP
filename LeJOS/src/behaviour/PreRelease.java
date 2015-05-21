@@ -1,29 +1,27 @@
 package behaviour;
 
 import sensors.ColorSensors;
-import utils.Configs;
 import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
-import motors.HandMotor;
 import motors.RegulatedMotors;
 
-public class Release implements Behavior {
+public class PreRelease implements Behavior {
 
-	private static Release behaviour = null;
+	private static PreRelease behaviour = null;
 
-	public static Release instance() {
+	public static PreRelease instance() {
 		if (behaviour == null)
-			behaviour = new Release();
+			behaviour = new PreRelease();
 		return behaviour;
 	}
 
-	private Release() {
+	private PreRelease() {
 
 	}
 
 	@Override
 	public boolean takeControl() {
-		return Controller.notExit() && Controller.isOkToRelease();
+		return Controller.notExit() && Controller.isCatched() && ColorSensors.leftOrRightEquals(ColorSensors.BLACK);
 	}
 
 	@Override
@@ -32,9 +30,7 @@ public class Release implements Behavior {
 		while (ColorSensors.leftOrRightEquals(ColorSensors.BLACK))
 			;
 		RegulatedMotors.stopMoving();
-		Configs.drawProcessing("Releasing");
-		HandMotor.releaseObject();
-		Controller.setOktoAdjust(true);
+		Controller.setOkToRealease(true);
 	}
 
 	@Override

@@ -6,32 +6,34 @@ import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
 import motors.RegulatedMotors;
 
-public class Move implements Behavior{
-	
+public class Move implements Behavior {
+
 	private static Move behaviour = null;
 	private boolean suppress = false;
-	
-	public static Move instance(){
-		if(behaviour==null)
+
+	public static Move instance() {
+		if (behaviour == null)
 			behaviour = new Move();
 		return behaviour;
 	}
-	
-	private Move(){
-		
+
+	private Move() {
+
 	}
 
 	@Override
 	public boolean takeControl() {
-		return ColorSensors.lenfAndRightEquals(ColorSensors.WHITE) && ! Controller.isCatchingOrReleasing();
+		return Controller.notExit() && !Controller.isCatchingOrReleasing()
+				&& ColorSensors.lenfAndRightEquals(ColorSensors.WHITE);
 	}
 
 	@Override
 	public void action() {
 		suppress = false;
+		Controller.setOktoAdjust(true);
 		Configs.drawProcessing("Moving");
 		RegulatedMotors.moveForward(300);
-		while(!suppress){
+		while (!suppress) {
 			Thread.yield();
 		}
 		RegulatedMotors.stopMoving();

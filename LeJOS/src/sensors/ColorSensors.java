@@ -36,7 +36,7 @@ public class ColorSensors {
 	private static BufferedReader br;
 	private static Color color;
 	private static final int nbrTest = 20;
-	private static final int nbrColor = 2;
+	private static final int nbrColor = 5;
 	private static HashMap<Integer, float[]> mapLeftSensor;
 	private static HashMap<Integer, float[]> mapRightSensor;
 
@@ -324,6 +324,10 @@ public class ColorSensors {
 		return getLeftColorId() == ColorID && getRightColorId() == ColorID;
 	}
 
+	public static boolean leftOrRightEquals(int ColorID){
+		return getLeftColorId() == ColorID || getRightColorId() == ColorID;
+	}
+	
 	public static boolean leftColorEqualsTo(int ColorID) {
 		return getLeftColorId() == ColorID;
 	}

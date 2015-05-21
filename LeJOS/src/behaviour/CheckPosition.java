@@ -3,18 +3,18 @@ package behaviour;
 import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
 
-public class CheckPosition implements Behavior{
-	
+public class CheckPosition implements Behavior {
+
 	private static CheckPosition behaviour = null;
-	
-	public static CheckPosition instance(){
-		if(behaviour==null)
+
+	public static CheckPosition instance() {
+		if (behaviour == null)
 			behaviour = new CheckPosition();
 		return behaviour;
 	}
-	
-	private CheckPosition(){
-		
+
+	private CheckPosition() {
+
 	}
 
 	@Override
