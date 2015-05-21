@@ -26,7 +26,7 @@ public class Move implements Behavior {
 		//return && !Controller.isCatchingOrReleasing()
 				//&& ColorSensors.lenfAndRightEquals(ColorSensors.WHITE);
 		return !Controller.isCatchingOrReleasing()
-				&& ColorSensors.lenfAndRightEquals(ColorSensors.WHITE);
+				&& ColorSensors.leftAndRightEquals(ColorSensors.WHITE);
 	}
 
 	@Override

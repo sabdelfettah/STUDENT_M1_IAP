@@ -320,12 +320,72 @@ public class ColorSensors {
 	
 	//
 	
-	public static boolean lenfAndRightEquals(int ColorID){
+	public static boolean leftAndRightEquals(int ColorID){
 		return getLeftColorId() == ColorID && getRightColorId() == ColorID;
+	}
+	
+	public static boolean leftAndRightEquals(int[] ColorIDs){
+		boolean result = true;
+		int i = 0;
+		while(result && i < ColorIDs.length){
+			if(getLeftColorId() == ColorIDs[i] && getRightColorId() == ColorIDs[i]){
+				i++;
+			}else{
+				result = false;
+			}
+		}
+		return result;
+	}
+	
+	public static boolean leftAndRightNotEquals(int ColorID){
+		return !leftAndRightEquals(ColorID);
+	}
+	
+	public static boolean leftAndRightNotEquals(int[] ColorIDs){
+		boolean result = true;
+		int i = 0;
+		while(result && i < ColorIDs.length){
+			if(getLeftColorId() == ColorIDs[i] && getRightColorId() == ColorIDs[i]){
+				result = false;
+			}else{
+				i++;
+			}
+		}
+		return result;
 	}
 
 	public static boolean leftOrRightEquals(int ColorID){
 		return getLeftColorId() == ColorID || getRightColorId() == ColorID;
+	}
+	
+	public static boolean leftOrRightEquals(int[] ColorIDs){
+		boolean result = true;
+		int i = 0;
+		while(result && i < ColorIDs.length){
+			if(getLeftColorId() == ColorIDs[i] || getRightColorId() == ColorIDs[i]){
+				i++;
+			}else{
+				result = false;
+			}
+		}
+		return result;
+	}
+	
+	public static boolean leftOrRightNotEquals(int ColorID){
+		return !leftOrRightEquals(ColorID);
+	}
+	
+	public static boolean leftOrRightNotEquals(int[] ColorIDs){
+		boolean result = true;
+		int i = 0;
+		while(result && i < ColorIDs.length){
+			if(getLeftColorId() != ColorIDs[i] || getRightColorId() != ColorIDs[i]){
+				i++;
+			}else{
+				result = false;
+			}
+		}
+		return result;
 	}
 	
 	public static boolean leftColorEqualsTo(int ColorID) {
@@ -338,6 +398,10 @@ public class ColorSensors {
 
 	public static boolean isColorsDifferent() {
 		return getLeftColorId() != getRightColorId();
+	}
+	
+	public static boolean isColorsEquals() {
+		return getLeftColorId() == getRightColorId();
 	}
 
 }
