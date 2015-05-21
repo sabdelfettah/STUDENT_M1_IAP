@@ -23,8 +23,8 @@ public class Catch implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		// TouchSensor.isPressed() at the end is better
-		return Controller.notExit() && !Controller.isCatched() && TouchSensor.isPressed();
+		//return Controller.notExit() && !Controller.isCatched() && TouchSensor.isPressed();
+		return !Controller.isCatched() && TouchSensor.isPressed();
 	}
 
 	@Override

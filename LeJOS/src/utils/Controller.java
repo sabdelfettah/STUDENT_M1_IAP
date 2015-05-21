@@ -11,6 +11,7 @@ public class Controller {
 	private static boolean Lost = false;
 	private static boolean Exit = false;
 	private static boolean NeedToCheckPosition = false;
+	private static boolean adjustAfterRelease = false;
 	private static boolean oktoAdjust = false ; 
 
 	public static boolean isOkToAdjust () {
@@ -59,9 +60,9 @@ public class Controller {
 		OkToRelease = okToRelease;
 	}
 
-	public static boolean notExit() {
-		return !Exit;
-	}
+//	public static boolean notExit() {
+//		return !Exit;
+//	}
 
 	public static void setExit(boolean exit) {
 		Exit = exit;
@@ -104,6 +105,14 @@ public class Controller {
 
 	public static boolean isOkToMove() {
 		return OkToMove;
+	}
+
+	public static boolean isAdjustAfterRelease() {
+		return adjustAfterRelease;
+	}
+
+	public static void setAdjustAfterRelease(boolean adjustAfterRelease) {
+		Controller.adjustAfterRelease = adjustAfterRelease;
 	}
 
 	private static void computeOkToMove() {

@@ -23,7 +23,9 @@ public class Move implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return Controller.notExit() && !Controller.isCatchingOrReleasing()
+		//return && !Controller.isCatchingOrReleasing()
+				//&& ColorSensors.lenfAndRightEquals(ColorSensors.WHITE);
+		return !Controller.isCatchingOrReleasing()
 				&& ColorSensors.lenfAndRightEquals(ColorSensors.WHITE);
 	}
 

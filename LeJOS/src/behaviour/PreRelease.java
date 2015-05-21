@@ -21,7 +21,8 @@ public class PreRelease implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return Controller.notExit() && Controller.isCatched() && ColorSensors.leftOrRightEquals(ColorSensors.BLACK);
+		//return Controller.notExit() && Controller.isCatched() && ColorSensors.leftOrRightEquals(ColorSensors.BLACK);
+		return Controller.isCatched() && ColorSensors.leftOrRightEquals(ColorSensors.BLACK);
 	}
 
 	@Override

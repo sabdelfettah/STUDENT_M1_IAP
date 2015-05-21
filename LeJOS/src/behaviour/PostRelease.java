@@ -9,7 +9,7 @@ public class PostRelease implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return Controller.isOkToAdjust();
+		return Controller.isAdjustAfterRelease();
 	}
 
 	@Override

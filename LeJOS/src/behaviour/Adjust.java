@@ -22,7 +22,8 @@ public class Adjust implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return Controller.notExit() && Controller.isOkToAdjust() && ColorSensors.isColorsDifferent();
+		//return Controller.notExit() && Controller.isOkToAdjust() && ColorSensors.isColorsDifferent();
+		return Controller.isOkToAdjust() && ColorSensors.isColorsDifferent();
 	}
 
 	@Override
