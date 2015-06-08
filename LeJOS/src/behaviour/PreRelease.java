@@ -28,8 +28,7 @@ public class PreRelease implements Behavior {
 	@Override
 	public void action() {
 		RegulatedMotors.moveForward();
-		while (ColorSensors.leftOrRightEquals(ColorSensors.BLACK))
-			;
+		while (ColorSensors.leftOrRightEquals(ColorSensors.BLACK));
 		RegulatedMotors.stopMoving();
 		Controller.setOkToRealease(true);
 	}

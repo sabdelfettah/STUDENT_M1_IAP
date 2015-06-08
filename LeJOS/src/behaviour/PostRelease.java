@@ -1,5 +1,7 @@
 package behaviour;
 
+import java.util.Random;
+
 import sensors.ColorSensors;
 import utils.Controller;
 import lejos.robotics.subsumption.Behavior;
@@ -14,12 +16,32 @@ public class PostRelease implements Behavior {
 
 	@Override
 	public void action() {
-		while (!ColorSensors.leftColorEqualsTo(ColorSensors.BLACK))
-			RegulatedMotors.turnleft();
-		RegulatedMotors.stopMoving();
-		while (!ColorSensors.leftColorEqualsTo(ColorSensors.WHITE))
-			RegulatedMotors.turnleft();
-		RegulatedMotors.stopMoving();
+		
+		switch ((new Random()).nextInt(2)) {
+			case 0 :
+				RegulatedMotors.turnleft() ;
+				while (ColorSensors.getLeftColorId() != ColorSensors.BLACK) ;
+				RegulatedMotors.stopMoving() ;
+				
+				RegulatedMotors.turnleft() ;
+				while (ColorSensors.getLeftColorId() != ColorSensors.WHITE) ;
+				RegulatedMotors.stopMoving() ;
+				
+				return ;
+				
+			case 1 :
+				RegulatedMotors.turnright() ;
+				while (ColorSensors.getRightColorId() != ColorSensors.BLACK) ;
+				RegulatedMotors.stopMoving() ;
+				
+				RegulatedMotors.turnright() ;
+				while (ColorSensors.getRightColorId() != ColorSensors.WHITE) ;
+				RegulatedMotors.stopMoving() ;
+				
+				return ;
+			
+			default : return ;
+		}
 	}
 
 	@Override
