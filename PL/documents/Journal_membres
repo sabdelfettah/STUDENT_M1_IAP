@@ -1,0 +1,39 @@
+[Abdelfettah, Gaci, Halit Jeu 29 jan 2015 20:00:08 CET]
+- Prise en main de l'IDE "Lego Mindstorms EV3 Home Edition"
+- Création de 5 petits programmes avec l'IDE (fichier : "Lego Mindstorms EV3 Home Edition/MonPremierProjetEV3.ev3") en vue d'effectuer des tests.
+
+[Abdelfettah, Gaci, Halit Dim 1 fev 2015 19:53:23 CET]
+- Création de 3 petits programmes (fichiers dans le dossier : "LeJOS/monPremierPackage") avec Eclipse et le Framework LeJOS (v0.9.0 beta) en vue d'effectuer des tests.
+
+[Abdelfettah, Gaci, Halit Jeu 5 fev 2015 18:19:23 CET]
+- Création d'un programme de détéction de couleur ; Détéction (puis affichage du résultat) des couleurs principales.
+
+[Abdelfettah, Gaci, Halit Jeu 12 fev 2015 15:14:14 CET]
+- Création d'un autre programme de détéction de couleur en utilisant le mode RGB pour calibrer ; Détection et affichage du résultat. 
+
+[Abdelfettah, Gaci, Halit Dim 15 fev 2015 16:07:12 CET]
+- Création d'un petit programme  pour tester les moteurs en synchronisant les Deux.  
+
+[Abdelfettah, Gaci, Halit Mer 25 mars 2015 16:28:34 CET]
+- Résolution du problème d'accès à la brique sous Jason.
+
+[Abdelfettah Ven 29 mars 2015 22:34:00 CET]
+- Tentative de résolution d'acces au moteurs en mode Remote (à essayer sur le robot).
+
+[Abdelfettah Sam 30 mars 2015 03:27:00 CET]
+- Résolution du problème du nombre d'exécutions (par le dessign pattern Singleton)
+
+[Abdelfettah Sam 30 mars 2015 03:54:00 CET]
+- Création d'un programme test des moteurs sous Jason (marche répététif ; marche/arrêt) - testé
+
+[Abdelfettah, Gaci, Halit Sam 11 Avr 2015 17:53:00 CET]
+- Création d'un programme avec l'architecture Behaviour
+
+[Abdelfettah Dim 12 Avr 2015 21:44:00 CET]
+- Programme avec l'architecture Behaviour fonctionne (avance+capte+capture+avance+relache+...)
+
+[Abdelfettah Dim 28 Avr 2015 13:30:00 CET]
+- Création d'un programme test (affichage de 1 à 10) avec l'architecture Behaviour pour voir l'impact de l'ordonnancement des Behaviours dans la liste "behaviourList"
+
+[Abdelfettah Dim 28 Avr 2015 17:44:00 CET]
+- Création des behaviours pour le programme proncipale (du projet).
